@@ -1,0 +1,52 @@
+{
+  "dataset": "/mnt/data/underwater_temporal_dataset/water_potability_temporal_synthetic.csv",
+  "target": "ph",
+  "timestamp_column": "timestamp",
+  "timestamp_warning": "Synthetic timestamps: workflow demonstration only; not real-world forecast validation.",
+  "split_rows": {
+    "train": 1938,
+    "validation": 416,
+    "test": 416
+  },
+  "features": [
+    "Hardness",
+    "Solids",
+    "Chloramines",
+    "Sulfate",
+    "Conductivity",
+    "Organic_carbon",
+    "Trihalomethanes",
+    "Turbidity",
+    "ph_lag_1",
+    "ph_lag_2",
+    "ph_lag_3",
+    "ph_lag_6",
+    "ph_rolling_mean_3",
+    "ph_rolling_std_3",
+    "ph_rolling_mean_6",
+    "ph_rolling_std_6",
+    "hour_of_day",
+    "day_of_week"
+  ],
+  "metrics": [
+    {
+      "model": "Linear Regression",
+      "MAE": 1.4851926773550932,
+      "RMSE": 1.8990452966451774,
+      "test_rows": 416
+    },
+    {
+      "model": "Random Forest",
+      "MAE": 1.5096849505260583,
+      "RMSE": 1.9078851542596138,
+      "test_rows": 416
+    },
+    {
+      "model": "Persistence",
+      "MAE": 1.9949131826893878,
+      "RMSE": 2.6341591037020438,
+      "test_rows": 416
+    }
+  ],
+  "persistence_definition": "Last available observed pH at prediction origin (forward-filled from past observations only)."
+}
